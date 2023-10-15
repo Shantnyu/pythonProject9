@@ -55,7 +55,7 @@ dns_records = {
         dns.rdatatype.A: '192.168.1.103',
     },
     'example.com.': {
-    dns.rdatatype.A: '192.168.1.101',
+        dns.rdatatype.A: '192.168.1.101',
     },
     'legitsite.com.': {
         dns.rdatatype.A: '192.168.1.104',
