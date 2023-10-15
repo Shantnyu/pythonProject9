@@ -53,9 +53,8 @@ password = 'sb9166@nyu.edu'
 input_string = 'AlwaysWatching'
 
 encrypted_value = encrypt_with_aes(input_string, password, salt)
-print("Encrypted Value:", encrypted_value)
-decrypted_value = decrypt_with_aes(encrypted_value, password, salt)
-print("Decrypted Value:", decrypted_value)
+encrypted_string = encrypt_with_aes(input_string, password, salt)
+decrypted_value = decrypt_with_aes(encrypted_value, password, salt)  # test function
 
 # For future use
 def generate_sha256_hash(input_string):
