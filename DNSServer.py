@@ -40,12 +40,11 @@ def encrypt_with_aes(input_string, password, salt):
     return base64.b64encode(encrypted_data).decode('utf-8')
 
 
-def decrypt_with_aes(encrypted_data, password, salt):
-    # Decode the encrypted data from Base64
-    encrypted_bytes = base64.b64decode(encrypted_data)
+def decrypt_with_aes(encrypted_data_b64, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    decrypted_data = f.decrypt(encrypted_bytes)
+    encrypted_data = base64.urlsafe_b64decode(encrypted_data_b64.encode('utf-8'))
+    decrypted_data = f.decrypt(encrypted_data)
     return decrypted_data.decode('utf-8')
 
 
@@ -54,7 +53,7 @@ password = 'sb9166@nyu.edu'
 input_string = 'AlwaysWatching'
 
 encrypted_value = encrypt_with_aes(input_string, password, salt)
-encrypted_string = encrypted_value
+encrypted_string = encrypt_with_aes(input_string, password, salt)
 decrypted_value = decrypt_with_aes(encrypted_value, password, salt)  # test function
 
 # For future use
