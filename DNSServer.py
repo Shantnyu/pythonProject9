@@ -52,8 +52,6 @@ input_string = 'AlwaysWatching'
 
 encrypted_value = encrypt_with_aes(input_string, password, salt)
 encrypted_string = str(encrypted_value, 'utf-8')
-decrypted_value = decrypt_with_aes(encrypted_value, password, salt)  # test function
-
 
 # For future use
 def generate_sha256_hash(input_string):
