@@ -28,33 +28,26 @@ def generate_aes_key(password, salt):
         length=32
     )
     key = kdf.derive(password.encode('utf-8'))
-    key = base64.urlsafe_b64encode(key)
-    return key
-
+    return base64.urlsafe_b64encode(key)
 
 def encrypt_with_aes(input_string, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
     encrypted_data = f.encrypt(input_string.encode('utf-8'))
-    # Encode the encrypted data with Base64
-    return base64.b64encode(encrypted_data).decode('utf-8')
+    return encrypted_data.decode('utf-8')  # Return the Fernet encrypted string directly.
 
-
-def decrypt_with_aes(encrypted_data_b64, password, salt):
+def decrypt_with_aes(encrypted_data, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    encrypted_data = base64.urlsafe_b64decode(encrypted_data_b64.encode('utf-8'))
-    decrypted_data = f.decrypt(encrypted_data)
+    decrypted_data = f.decrypt(encrypted_data.encode('utf-8'))
     return decrypted_data.decode('utf-8')
 
-
-salt = b'Tandon'  # Remember it should be a byte-object
+salt = b'Tandon'
 password = 'sb9166@nyu.edu'
 input_string = 'AlwaysWatching'
 
-encrypted_value = encrypt_with_aes(input_string, password, salt)
 encrypted_string = encrypt_with_aes(input_string, password, salt)
-decrypted_value = decrypt_with_aes(encrypted_value, password, salt)  # test function
+decrypted_value = decrypt_with_aes(encrypted_string, password, salt)
 
 # For future use
 def generate_sha256_hash(input_string):
