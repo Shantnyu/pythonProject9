@@ -50,10 +50,10 @@ encrypted_value = encrypt_with_aes(input_string, password, salt)
 decrypted_value = decrypt_with_aes(encrypted_value, password, salt)
 
 # For future use
-def generate_sha256_hash(input_string):
-    sha256_hash = hashlib.sha256()
-    sha256_hash.update(input_string.encode('utf-8'))
-    return sha256_hash.hexdigest()
+#def generate_sha256_hash(input_string):
+    #sha256_hash = hashlib.sha256()
+    #sha256_hash.update(input_string.encode('utf-8'))
+    #return sha256_hash.hexdigest()
 
 
 # A dictionary containing DNS records mapping hostnames to different types of DNS data.
