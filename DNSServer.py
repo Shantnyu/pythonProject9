@@ -34,13 +34,13 @@ def encrypt_with_aes(input_string, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
     encrypted_data = f.encrypt(input_string.encode('utf-8'))
-    return base64.urlsafe_b64encode(encrypted_data).decode('utf-8')
+    return encrypted_data.decode('utf-8')
    
-def decrypt_with_aes(encrypted_data, password, salt):
+def decrypt_with_aes(encrypted_data_str, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    encrypted_data_bytes = base64.urlsafe_b64decode(encrypted_data.encode('utf-8'))
-    decrypted_data = f.decrypt(encrypted_data_bytes)
+    encrypted_data = encrypted_data_str.encode('utf-8')  # Convert string back to bytes for decryption
+    decrypted_data = f.decrypt(encrypted_data)
     return decrypted_data.decode('utf-8')
 
 salt = b'Tandon'
